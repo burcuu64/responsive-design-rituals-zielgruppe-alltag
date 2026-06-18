@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rituals — Alltags Kollektion</title>
+  <link rel="icon" type="image/png" href="Bilder/Rituals_logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* --- RESET & BASE --- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #faf7f4;
+      --white-pure: #ffffff;
+      --white-warm: #fefcf9;
+      --blush: #e8c4be;
+      --dusty-rose: #c9897e;
+      --kicker-gold: #a98c5e;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light-text: #888;
+      --border: #e8e4e0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+      background: #fefcf9;
+      color: var(--dark);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo span {
+      font-size: 18px;
+      letter-spacing: 0.1em;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/7;
+      overflow: hidden;
+      background: #d4a8a0;
+    }
+
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- COLOR DOTS --- */
+    .color-selector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 28px 20px 20px;
+      background: #fefcf9;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.2s;
+    }
+
+    .dot:hover {
+      transform: scale(1.2);
+    }
+    .dot.active {
+      border-color: var(--dark);
+    }
+
+    .dot-1 {
+      background: #FAD6D7;
+    }
+    .dot-2 {
+      background: #E36926;
+    }
+    .dot-3 {
+      background: #911B35;
+    }
+    .dot-4 {
+      background: #00909E;
+    }
+    .dot-5 {
+      background: #32143B;
+    }
+    .dot-6 {
+      background: #1E4636;
+    }
+
+    /* --- HERO TEXT --- */
+    .hero-text {
+      text-align: center;
+      padding: 8px 20px 32px;
+      background: #fefcf9;
+    }
+
+    .hero-text h4 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+      margin-bottom: 20px;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      border: 1px solid var(--dark);
+      padding: 12px 40px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: var(--dark);
+      color: #fefcf9;
+    }
+
+    /* --- FADE-IN ANIMATION --- */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- KICKER + HEADLINE --- */
+    .kicker-wrap {
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .kicker-label {
+      display: block;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--kicker-gold);
+      white-space: nowrap;
+      margin-bottom: 12px;
+    }
+
+    .kicker-line {
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--kicker-gold);
+      opacity: 0.8;
+    }
+
+    .section-headline {
+      font-family: 'EB Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(24px, 3vw, 30px);
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    /* --- STORY SECTION --- */
+    .story-wrapper {
+      padding: 0 60px;
+      margin: 60px 0 0 0;
+      background: #fefcf9;
+    }
+
+    .story-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: center;
+      background: #fefcf9;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .story-image {
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: #d4b5ae;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-text {
+      padding: 60px clamp(30px, 5vw, 80px);
+      background: #fefcf9;
+    }
+
+    .story-text p {
+      font-size: clamp(14px, 1.5vw, 16px);
+      color: var(--mid);
+      line-height: 1.9;
+    }
+
+    /* --- FABRIC SECTION --- */
+    .fabric-wrapper {
+      padding: 0 60px;
+      margin: 60px 0 0 0;
+      background: #fefcf9;
+    }
+
+    .fabric-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      background: #fefcf9;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .fabric-section .fabric-text {
+      padding: 60px clamp(30px, 5vw, 80px);
+      background: #fefcf9;
+    }
+
+    .fabric-text p {
+      font-size: clamp(13px, 1.4vw, 15px);
+      color: var(--mid);
+      line-height: 1.9;
+    }
+
+    .fabric-image {
+      aspect-ratio: 1/1;
+      background: #c9b0ae;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .fabric-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- PRE-BANNER BRIDGE --- */
+    .pre-banner-bridge {
+      background: #F6F4F2;
+      height: 48px;
+      margin: 60px 0 0 0;
+    }
+
+    /* --- BANNER --- */
+    .banner-wrapper {
+      padding: 0 60px;
+      background: #F6F4F2;
+    }
+
+    .banner-section {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #d4a89e;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .banner-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* --- SAKURA TEXT --- */
+    .sakura-text-wrapper {
+      background: #F6F4F2;
+      width: 100%;
+    }
+
+    .sakura-text-section {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .sakura-text-section .kicker-line {
+      margin: 0 auto;
+    }
+
+    .sakura-text-section p {
+      font-size: clamp(14px, 1.5vw, 16px);
+      color: var(--mid);
+      line-height: 1.9;
+    }
+
+    /* --- MOSAIC --- */
+    .mosaic-wrapper {
+      padding: 0 60px;
+      background: #F6F4F2;
+    }
+
+    .mosaic {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 24px;
+      align-items: stretch;
+      background: #F6F4F2;
+    }
+
+    .mosaic-main {
+      background: #e0cac8;
+      overflow: hidden;
+      border-radius: 4px;
+      min-height: 100%;
+    }
+
+    .mosaic-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mosaic-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .mosaic-top,
+    .mosaic-bottom {
+      background: #c9b0ae;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .mosaic-top img,
+    .mosaic-bottom img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mosaic-caption {
+      text-align: center;
+      padding: 32px 60px 60px;
+      background: #F6F4F2;
+    }
+
+    .mosaic-caption p {
+      font-size: clamp(13px, 1.4vw, 15px);
+      color: var(--mid);
+      line-height: 1.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* --- FINAL HERO --- */
+    .final-wrapper {
+      padding: 0 60px;
+      margin: 60px 0 0 0;
+      background: #fefcf9;
+    }
+
+    .final-hero {
+      aspect-ratio: 16 / 9;
+      background: #c9a898;
+      overflow: hidden;
+      position: relative;
+      border-radius: 4px;
+    }
+
+    .final-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .final-caption {
+      text-align: center;
+      padding: 28px 20px 60px;
+      background: #fefcf9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .final-caption p {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+    }
+
+    .final-caption .btn-primary {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #1e1e1e;
+      color: #bbb;
+      padding: 60px 40px 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Gill Sans', 'Gill Sans MT', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul li a {
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+    }
+
+    .footer-app {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-hotline {
+      font-size: 13px;
+      color: #999;
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+
+    .footer-hotline strong {
+      color: #ddd;
+      font-weight: 400;
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: 0.2em;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .accordion-toggle {
+      display: none;
+    }
+
+    /* --- MOBILE --- */
+    @media (max-width: 768px) {
+      nav {
+        padding: 14px 20px;
+      }
+      .hero {
+        aspect-ratio: 3/4;
+      }
+
+      .story-wrapper,
+      .fabric-wrapper,
+      .banner-wrapper,
+      .mosaic-wrapper,
+      .final-wrapper {
+        padding: 0 20px;
+      }
+      .story-wrapper {
+        margin: 40px 0 0 0;
+      }
+      .fabric-wrapper {
+        margin: 40px 0 0 0;
+      }
+      .pre-banner-bridge {
+        margin: 40px 0 0 0;
+        height: 32px;
+      }
+      .final-wrapper {
+        margin: 40px 0 0 0;
+      }
+
+      .story-section {
+        grid-template-columns: 1fr;
+      }
+      .story-image {
+        aspect-ratio: 4/3;
+      }
+      .story-text {
+        padding: 32px 24px;
+      }
+
+      .fabric-section {
+        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;
+      }
+      .fabric-text {
+        padding: 32px 24px;
+      }
+      .fabric-image {
+        aspect-ratio: 4/3;
+        width: 100%;
+        margin: 0;
+      }
+
+      .banner-section {
+        aspect-ratio: 16 / 9;
+      }
+      .sakura-text-section {
+        padding: 40px 24px;
+      }
+
+      .mosaic {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .mosaic-right {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .mosaic-top,
+      .mosaic-bottom {
+        aspect-ratio: 4/3;
+      }
+
+      .mosaic-top img,
+      .mosaic-bottom img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .mosaic-caption {
+        padding: 32px 24px 40px;
+      }
+
+      .final-hero {
+        aspect-ratio: 16 / 9;
+      }
+
+      footer {
+        padding: 0 0 32px;
+      }
+      .footer-grid {
+        display: block;
+        margin-bottom: 0;
+      }
+      .footer-col-app {
+        padding: 24px 24px 0;
+      }
+      .footer-col.accordion {
+        border-bottom: 1px solid #333;
+      }
+
+      .accordion-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 18px 24px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #fff;
+        text-align: left;
+      }
+
+      .accordion-toggle .arrow {
+        font-size: 16px;
+        color: #888;
+        transition: transform 0.25s;
+        flex-shrink: 0;
+      }
+
+      .footer-col.accordion.open .accordion-toggle .arrow {
+        transform: rotate(180deg);
+      }
+
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      .footer-col.accordion.open .accordion-body {
+        max-height: 600px;
+      }
+
+      .accordion-body ul {
+        padding: 0 24px 20px;
+      }
+
+      .footer-col.accordion>h4 {
+        display: none;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        margin: 0 24px;
+        padding-top: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .story-wrapper,
+      .fabric-wrapper,
+      .banner-wrapper,
+      .mosaic-wrapper,
+      .final-wrapper {
+        padding: 0 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="#">RITUALS<span>...</span></a>
+  </nav>
+
+  <section class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="Video/Video_Zielgruppe1.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <div class="color-selector">
+    <div class="dot dot-1 active" data-color="1"></div>
+    <div class="dot dot-2" data-color="2"></div>
+    <div class="dot dot-3" data-color="3"></div>
+    <div class="dot dot-4" data-color="4"></div>
+    <div class="dot dot-5" data-color="5"></div>
+    <div class="dot dot-6" data-color="6"></div>
+  </div>
+
+  <div class="hero-text">
+    <h4 id="dynamic-headline">Sanft. Schlicht. Dein tägliches Ritual</h4>
+    <button class="btn-primary">JETZT KAUFEN</button>
+  </div>
+
+  <!-- STORY -->
+  <div class="story-wrapper fade-section">
+    <section class="story-section">
+      <div class="story-image">
+        <img id="story-img" src="Bilder/Rosa_Produkt.png" alt="Produktbild">
+      </div>
+      <div class="story-text">
+        <div class="kicker-wrap">
+          <span class="kicker-label" id="story-kicker">Nur für dich</span>
+          <span class="kicker-line"></span>
+        </div>
+        <h3 class="section-headline" id="story-headline">Ein Ritual, das bleibt</h3>
+        <div id="story-body">
+          <p>Manche Entscheidungen tragen wir nach außen. Das Kopftuch ist eine davon – sichtbar, bewusst, und tief verwurzelt in dem, was uns ausmacht.</p>
+          <br>
+          <p>Es ist kein bloßes Accessoire. Es ist ein <strong>stiller Ausdruck von Identität</strong>, ein tägliches Innehalten inmitten des Lärms. Wer es trägt, kennt diesen Moment: das Falten des Stoffes, die Ruhe, die folgt. Eine Geste, die nach innen wirkt.</p>
+          <br>
+          <p>Rituals begleitet dieses <strong>Ritual</strong> – mit Stoffen, die sich anfühlen wie ein ruhiger Atemzug.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FABRIC -->
+  <div class="fabric-wrapper fade-section">
+    <section class="fabric-section">
+      <div class="fabric-text">
+        <div class="kicker-wrap">
+          <span class="kicker-label" id="fabric-kicker">Made in Europe</span>
+          <span class="kicker-line"></span>
+        </div>
+        <h3 class="section-headline" id="fabric-headline">Weich wie ein Atemzug</h3>
+        <div id="fabric-body">
+          <p>Weich. Atmungsaktiv. Für Tage, die länger dauern als geplant.</p>
+          <p>Unser Jersey entsteht aus <strong>recycelten Fasern</strong> – in Europa gefertigt, mit Farben, die frei von Schadstoffen sind und trotzdem leuchten. Weil <strong>Qualität keine Kompromisse kennt</strong>. Weder für deine Haut, noch für den Planeten.</p>
+          <p>Die feinen, flachen Nähte verschwinden im Stoff. Kein Druck. Keine Reibung. Nur <strong>Stille auf der Haut</strong>.</p>
+        </div>
+      </div>
+      <div class="fabric-image">
+        <img id="fabric-img" src="Bilder/Rosa_Naht_Jersey.png" alt="Stoffdetail">
+      </div>
+    </section>
+  </div>
+
+  <div class="pre-banner-bridge fade-section"></div>
+
+  <!-- BANNER -->
+  <div class="banner-wrapper fade-section">
+    <section class="banner-section">
+      <img id="banner-img" src="Bilder/Rituals_sakura_produkte.png" alt="Sakura Kollektion">
+    </section>
+  </div>
+
+  <!-- SAKURA TEXT -->
+  <div class="sakura-text-wrapper fade-section">
+    <section class="sakura-text-section">
+      <div class="kicker-wrap">
+        <span class="kicker-label" id="sakura-kicker">Neu entdecken</span>
+        <span class="kicker-line"></span>
+      </div>
+      <h3 class="section-headline" id="sakura-headline">Ein Duft, der bleibt</h3>
+      <p id="sakura-text">Ein Hauch Kirschblüte. Ein Moment nur für dich.<br>Inspiriert von der japanischen Sakura-Tradition vereint diese Kollektion <strong>Textil und Duft</strong> zu einem einzigen, bewussten Ritual. Der feine Aroma von Reismilch und Kirschblüte umhüllt dich sanft – und erinnert dich mit jedem Atemzug daran, <strong>innezuhalten</strong>. Stille finden. Neu beginnen.</p>
+    </section>
+  </div>
+
+  <!-- MOSAIC -->
+  <div class="mosaic-wrapper fade-section">
+    <div class="mosaic">
+      <div class="mosaic-main">
+        <img id="mosaic-main-img" src="Bilder/Rosa_Verpackung.png" alt="Verpackung">
+      </div>
+      <div class="mosaic-right">
+        <div class="mosaic-top">
+          <img id="mosaic-top-img" src="Bilder/Rosa_Duftperlen.png" alt="Duftperlen">
+        </div>
+        <div class="mosaic-bottom">
+          <img id="mosaic-bottom-img" src="Bilder/Rosa_Wäschetabs.png" alt="Wäschetabs">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mosaic-caption fade-section">
+    <p id="mosaic-caption-text">Damit dein Ritual auch nach der Wäsche weiterlebt: Jeder Lieferung liegen exklusive Proben der Sakura-Wäschepflege bei – feine Duftperlen und sanfte Tabs, die die Fasern deines Tuches bei jeder Wäsche neu beleben. Der zarte Hauch von Kirschblüte und Reismilch bleibt. Immer wieder.</p>
+  </div>
+
+  <!-- FINAL HERO -->
+  <div class="final-wrapper fade-section">
+    <section class="final-hero">
+      <img id="final-img" src="Bilder/Final_Hero.png" alt="Final Hero">
+    </section>
+  </div>
+
+  <div class="final-caption fade-section">
+    <p>Für alle, die das Schöne im Alltag suchen.</p>
+    <button class="btn-primary">JETZT KAUFEN</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col accordion" id="acc-1">
+        <h4>Kundenservice</h4>
+        <button class="accordion-toggle" aria-expanded="false" aria-controls="body-1">
+          Kundenservice <span class="arrow">&#8964;</span>
+        </button>
+        <div class="accordion-body" id="body-1">
+          <ul>
+            <li><a href="#">Rückgabe und Umtausch</a></li>
+            <li><a href="#">Häufig gestellte Fragen</a></li>
+            <li><a href="#">Kontakt</a></li>
+            <li><a href="#">Cookie-Richtlinie</a></li>
+            <li><a href="#">Cookie-Einstellungen</a></li>
+            <li><a href="#">Erklärung zur Barrierefreiheit</a></li>
+            <li><a href="#">Datenschutzrichtlinie</a></li>
+            <li><a href="#">Hausordnung Von Rituals</a></li>
+            <li><a href="#">Human Rights Policy Statement</a></li>
+            <li><a href="#">Supply Chain Act</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-col accordion" id="acc-2">
+        <h4>Sie finden uns hier</h4>
+        <button class="accordion-toggle" aria-expanded="false" aria-controls="body-2">
+          Sie finden uns hier <span class="arrow">&#8964;</span>
+        </button>
+        <div class="accordion-body" id="body-2">
+          <ul>
+            <li><a href="#">Unsere Stores</a></li>
+            <li><a href="#">Department stores</a></li>
+            <li><a href="#">Hotels</a></li>
+            <li><a href="#">Flughäfen</a></li>
+            <li><a href="#">Mind Oasis</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-col accordion" id="acc-3">
+        <h4>Unsere Marke</h4>
+        <button class="accordion-toggle" aria-expanded="false" aria-controls="body-3">
+          Unsere Marke <span class="arrow">&#8964;</span>
+        </button>
+        <div class="accordion-body" id="body-3">
+          <ul>
+            <li><a href="#">Über uns</a></li>
+            <li><a href="#">Karriere</a></li>
+            <li><a href="#">Franchise</a></li>
+            <li><a href="#">Presseanfragen</a></li>
+            <li><a href="#">Firmengeschenken &amp; Gastgewerbe</a></li>
+            <li><a href="#">Aktionen</a></li>
+            <li><a href="#">App</a></li>
+            <li><a href="#">Rituals Workshops</a></li>
+            <li><a href="#">Werden Sie Mitglied von My Rituals</a></li>
+            <li><a href="#">Vulnerability Disclosure</a></li>
+            <li><a href="#">Affiliate Program</a></li>
+            <li><a href="#">Profit Pledge</a></li>
+            <li><a href="#">Nachhaltigkeitsbemühungen</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-col footer-col-app">
+        <h4>Rituals App</h4>
+        <div class="footer-app">
+          <a href="#">
+            <img src="Bilder/App_Store.png" alt="Download on the App Store" style="width: 160px; display: block;">
+          </a>
+          <a href="#">
+            <img src="Bilder/google_play.png" alt="Get it on Google Play" style="width: 190px; margin-left: -15px; display: block;">
+          </a>
+        </div>
+        <div class="footer-hotline">
+          <strong>Kundenhotline</strong>
+          +49 17x-xxxxxxx Ortstarif<br>
+          Mo – Fr &nbsp;&nbsp;09:00 – 18:30 Uhr<br>
+          Sa – So &nbsp;&nbsp;10:00 – 18:30 Uhr
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-logo">RITUALS</span>
+      <span class="footer-copy">© 2026 Rituals Cosmetics</span>
+    </div>
+  </footer>
+
+  <script>
+    // --- COLOR DATA ---
+    const colorData = {
+      '1': {
+        sakuraText: `Ein Hauch Kirschblüte. Ein Moment nur für dich.<br>Inspiriert von der japanischen Sakura-Tradition vereint diese Kollektion <strong>Textil und Duft</strong> zu einem einzigen, bewussten Ritual. Der feine Aroma von Reismilch und Kirschblüte umhüllt dich sanft – und erinnert dich mit jedem Atemzug daran, <strong>innezuhalten</strong>. Stille finden. Neu beginnen.`,
+        mosaicCaption: `Damit dein Ritual auch nach der Wäsche weiterlebt: Jeder Lieferung liegen exklusive Proben der Sakura-Wäschepflege bei – feine Duftperlen und sanfte Tabs, die die Fasern deines Tuches bei jeder Wäsche neu beleben. Der zarte Hauch von Kirschblüte und Reismilch bleibt. Immer wieder.`,
+        images: {
+          story: 'Bilder/Rosa_Produkt.png',
+          fabric: 'Bilder/Rosa_Naht_Jersey.png',
+          banner: 'Bilder/Rituals_sakura_produkte.png',
+          mosaicMain: 'Bilder/Rosa_Verpackung.png',
+          mosaicTop: 'Bilder/Rosa_Duftperlen.png',
+          mosaicBottom: 'Bilder/Rosa_Wäschetabs.png',
+          final: 'Bilder/Final_Hero.png'
+        }
+      },
+      '2': {
+        sakuraText: `Ein Hauch süßer Orange. Wärme, die bleibt.<br>Inspiriert von der Sonne als Kraft des Lebens vereint diese Kollektion <strong>Textil und Duft</strong> zu einem einzigen, leuchtenden Ritual. Das warme Aroma von süßer Orange und Zedernholz umhüllt dich sanft – und erinnert dich mit jedem Atemzug daran, <strong>das Leben in vollen Zügen zu feiern</strong>. Licht finden. Strahlen.`,
+        mosaicCaption: `Damit dein Ritual auch nach der Wäsche weiterlebt: Jeder Lieferung liegen exklusive Proben der Mehr-Wäschepflege bei – feine Duftperlen und sanfte Tabs, die die Fasern deines Tuches bei jeder Wäsche neu beleben. Die warme Note von Orange und Zedernholz bleibt. Immer wieder.`,
+        images: {
+          story: 'Bilder/Orange_Produkt_jersey.png',
+          fabric: 'Bilder/Orange_Naht_Jersey.png',
+          banner: 'Bilder/Orange_Kollektion_jersey.png',
+          mosaicMain: 'Bilder/Orange_Verpackung_Jersey.png',
+          mosaicTop: 'Bilder/Orange_Durftperlen_Jersey.png',
+          mosaicBottom: 'Bilder/Orange_Wäsche_Jersey.png',
+          final: 'Bilder/Final_Hero.png'
+        }
+      }
+    };
+
+    // --- DOT CLICK HANDLER ---
+    document.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+
+        const colorKey = dot.dataset.color;
+        const data = colorData[colorKey];
+
+        if (data) {
+          document.getElementById('sakura-text').innerHTML = data.sakuraText;
+
+          document.getElementById('mosaic-caption-text').textContent = data.mosaicCaption;
+
+          document.getElementById('story-img').src = data.images.story;
+          document.getElementById('fabric-img').src = data.images.fabric;
+          document.getElementById('banner-img').src = data.images.banner;
+          document.getElementById('mosaic-main-img').src = data.images.mosaicMain;
+          document.getElementById('mosaic-top-img').src = data.images.mosaicTop;
+          document.getElementById('mosaic-bottom-img').src = data.images.mosaicBottom;
+          document.getElementById('final-img').src = data.images.final;
+        }
+      });
+    });
+
+    // --- FADE-IN OBSERVER ---
+    const fadeElements = document.querySelectorAll('.fade-section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+    // --- FOOTER ACCORDION ---
+    document.querySelectorAll('.accordion-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const col = btn.closest('.footer-col.accordion');
+        const isOpen = col.classList.contains('open');
+        document.querySelectorAll('.footer-col.accordion').forEach(c => {
+          c.classList.remove('open');
+          if (c.querySelector('.accordion-toggle')) {
+            c.querySelector('.accordion-toggle').setAttribute('aria-expanded', 'false');
+          }
+        });
+        if (!isOpen) {
+          col.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
